@@ -36,7 +36,7 @@ io.on('connection', (socket) =>{
 //   console.log('listening on *:3000');
 // });
 
-// let port = process.env.PORT;
+let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
