@@ -61,7 +61,7 @@ socket.on('username',(user)=>{
 
 })
 
-function printMessage(username, message){
+function printMessage(user, message){
   output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
   output.scrollTop = output.scrollHeight;
 }
