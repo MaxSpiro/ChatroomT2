@@ -5,7 +5,7 @@ let currentColor = "blue";
 let username = prompt("Enter username");
 socket.emit('user connected',username);
 socket.on('user connected', (username)=>{
-  output.innerHTML += "<pre><span id=blue>"+username+"</span> has connected</pre>";
+  output.innerHTML += "<pre><span style=color:red>"+username+" has connected</span></pre>";
 });
 
 
@@ -64,7 +64,14 @@ socket.on('username',(user)=>{
 })
 
 function printMessage(user, message){
-  output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+  if(currentColor == "blue"){
+    output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+  }else if(currentColor == "green"){
+    output.innerHTML += "<pre><span id=green>"+user+": </span>" + message + "</pre>";
+  }else{
+    output.innerHTML += "<pre><span id=red>"+user+": </span>" + message + "</pre>";
+  }
+
   output.scrollTop = output.scrollHeight;
 }
 
