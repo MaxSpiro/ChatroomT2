@@ -13,9 +13,10 @@ app.get('/', (req, res) => {
 app.use(express.static('.'));
 
 io.on('connection', (socket) =>{
-
+  let user = null;
   socket.on('user connected', (username)=>{
-    io.emit('user connected',username);
+    user = username;
+    io.emit('user connected',user);
   });
 
   socket.on('new message', (message)=>{
@@ -24,19 +25,19 @@ io.on('connection', (socket) =>{
   socket.on('username', (username)=>{
     io.emit('username',username);
   });
-  socket.on('disconnect', ()=>{
-    io.emit('disconnect',)
+  socket.on('disconnect', (user)=>{
+    io.emit('user disconnected',user)
   });
 });
 
 
  // Use the server.listen(3000) when testing locally
-// server.listen(3000, () => {
-//   console.log('listening on *:3000');
-// });
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-server.listen(port);
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
+// server.listen(port);
