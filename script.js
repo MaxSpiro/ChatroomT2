@@ -1,11 +1,14 @@
 var socket = io();
 
-
+let currentColor = "blue";
 
 let username = prompt("Enter username");
 socket.emit('user connected',username);
+socket.on('user connected', (username)=>{
+  output.innerHTML += "<pre><span id=blue>"+username+"</span> has connected</pre>";
+});
 
-let currentColor = "blue";
+
 
 let styleDoc = document.getElementById("styleLink");
 
@@ -61,7 +64,7 @@ socket.on('username',(user)=>{
 
 })
 
-function printMessage(username, message){
+function printMessage(user, message){
   output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
   output.scrollTop = output.scrollHeight;
 }
