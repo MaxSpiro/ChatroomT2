@@ -1,10 +1,4 @@
 var socket = io();
-function sendToServer(message){
-  socket.emit('new message',message);
-}
-socket.on('new message', (message) =>{
-  console.log(message);
-});
 
 
 
@@ -23,13 +17,17 @@ let theme = "light"; //light, dark
 
 //enter text into box w/enter key
 
-let input = document.getElementById("input").addEventListener("keyup", function(event) { event.preventDefault(); if( event.keyCode == 13) {let input = document.getElementById("input").value;
+let input = document.getElementById("input").addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if( event.keyCode == 13) {
+    let input = document.getElementById("input").value;
         input = input.trim();
         if(input != ""){
-          output.innerHTML += "<pre><span id=blue>"+username+": </span>" + input + "</pre>";
+
           sendToServer(input); //sending in the input to the server before resetting the value
+
           document.getElementById("input").value = "";
-          changeColor();
+
           //autoscroll vvv
           output.scrollTop = output.scrollHeight;
     }}})
@@ -47,6 +45,29 @@ let input = document.getElementById("input").addEventListener("keyup", function(
     }
   }
 }*/
+
+var message = "";
+
+function sendToServer(message){
+  socket.emit('new message',message);
+  socket.emit('username',username);
+}
+socket.on('new message', (msg)=>{
+  message = msg;
+
+});
+socket.on('username',(user)=>{
+  output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+})
+
+
+
+
+
+
+
+
+
 
 function colorOfName(){
 
