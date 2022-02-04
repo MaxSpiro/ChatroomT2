@@ -61,7 +61,6 @@ socket.on('new message', (msg)=>{
 });
 socket.on('username',(user)=>{
   printMessage(user, message);
-
 })
 
 function printMessage(user, message){
