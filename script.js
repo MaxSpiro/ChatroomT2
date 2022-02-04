@@ -7,7 +7,7 @@ socket.emit('user connected',username);
 socket.on('user connected', (username)=>{
   output.innerHTML += "<pre><span style=color:red>"+username+" has connected</span></pre>";
 });
-socket.on('disconnect',(user)=>{
+socket.on('disconnect',(user)=>{//not working idk why
   output.innerHTML += "<pre><span style=color:red>a user has disconnected</span></pre>";
 });
 
