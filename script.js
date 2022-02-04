@@ -3,7 +3,7 @@ var socket = io();
 
 
 let username = prompt("Enter username");
-
+socket.emit('user connected',username);
 
 let currentColor = "blue";
 
@@ -29,7 +29,7 @@ let input = document.getElementById("input").addEventListener("keyup", function(
           document.getElementById("input").value = "";
 
           //autoscroll vvv
-          output.scrollTop = output.scrollHeight;
+
     }}})
 /*document.addEventListener("keyup", enterKey);
   function enterKey(event){
@@ -57,8 +57,14 @@ socket.on('new message', (msg)=>{
 
 });
 socket.on('username',(user)=>{
-  output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+  printMessage(user, message);
+
 })
+
+function printMessage(username, message){
+  output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+  output.scrollTop = output.scrollHeight;
+}
 
 
 

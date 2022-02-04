@@ -5,11 +5,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-server.listen(port);
+
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -31,6 +27,14 @@ io.on('connection', (socket) =>{
   });
 });
 
-// server.listen(3000, () => {
-//   console.log('listening on *:3000');
-// });
+
+ // Use the server.listen(3000) when testing locally
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
+// server.listen(port);
