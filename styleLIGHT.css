@@ -1,0 +1,80 @@
+
+#body {
+  height: 100vh;
+  background-color: white;
+}
+
+/*#usernameInput {
+  left: 90%;
+  background-color: gainsboro;
+  color:#2B2D2F;
+  box-sizing: border-box;
+  width: 10%;
+  position: relative;
+  margin-top: 5px;
+}*/
+
+
+#output{
+  background-color: gainsboro;
+  color: rgb(46, 46, 46);
+  width: 50%;
+  height: 80%;
+  position: relative;
+  left: 25%;
+  overflow-y: auto;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+
+#input{
+  background-color: gainsboro;
+  color:rgb(46, 46, 46);
+  box-sizing: border-box;
+  width: 50%;
+  position: relative;
+  left: 25%;
+  margin-top: 5px;
+}
+
+#nameColor{
+  color: #3eaaad;
+}
+
+#blue {
+  color: #3eaaad;
+}
+#red {
+  color: red;
+}
+#green{
+
+  color: green;
+
+}
+
+pre{
+  color: rgb(46, 46, 46);
+  padding: 0px;
+  margin: 3px 0px;
+}
+
+
+#welcomeMessage{
+  color:rgb(46, 46, 46);
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+#button{
+
+  background-color: gainsboro;
+  color: rgb(46, 46, 46);
+  position: relative;
+  left:25%;
+
+}
