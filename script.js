@@ -4,10 +4,11 @@ let currentColor = "blue";
 
 let username = prompt("Enter username");
 socket.emit('user connected',username);
-socket.on('user connected', (username)=>{
-  output.innerHTML += "<pre><span style=color:red>"+username+" has connected</span></pre>";
+socket.on('user connected', (onlineUsers)=>{
+  output.innerHTML += "<pre><span style=color:red>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
+  updateOnlineUsers(onlineUsers);
 });
-socket.on('disconnect',(user)=>{//not working idk why
+socket.on('user disconnected',(user)=>{//not working idk why
   output.innerHTML += "<pre><span style=color:red>a user has disconnected</span></pre>";
 });
 
@@ -51,6 +52,17 @@ let input = document.getElementById("input").addEventListener("keyup", function(
     }
   }
 }*/
+
+
+function updateOnlineUsers(onlineUsers){
+  for(let i=0;i<onlineUsers.length;i++){
+    var ul = document.getElementById("onlineUsers");
+    ul.innerHTML = "";
+    var li = document.createElement("li");
+    li.appendChild(document.createTextNode(""+onlineUsers[i]));
+    ul.appendChild(li);
+  }
+}
 
 var message = "";
 

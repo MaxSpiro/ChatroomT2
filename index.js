@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 
-
+let onlineUsers = new Array(0);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -13,10 +13,12 @@ app.get('/', (req, res) => {
 app.use(express.static('.'));
 
 io.on('connection', (socket) =>{
-  let user = null;
+  var user = null;
+
   socket.on('user connected', (username)=>{
     user = username;
-    io.emit('user connected',user);
+    onlineUsers[onlineUsers.length]=user;
+    io.emit('user connected',onlineUsers);
   });
 
   socket.on('new message', (message)=>{
@@ -32,12 +34,12 @@ io.on('connection', (socket) =>{
 
 
  // Use the server.listen(3000) when testing locally
-// server.listen(3000, () => {
-//   console.log('listening on *:3000');
-// });
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-server.listen(port);
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
+// server.listen(port);
