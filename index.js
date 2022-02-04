@@ -13,9 +13,10 @@ app.get('/', (req, res) => {
 app.use(express.static('.'));
 
 io.on('connection', (socket) =>{
-
+  let user = null;
   socket.on('user connected', (username)=>{
-    io.emit('user connected',username);
+    user = username;
+    io.emit('user connected',user);
   });
 
   socket.on('new message', (message)=>{
@@ -24,8 +25,8 @@ io.on('connection', (socket) =>{
   socket.on('username', (username)=>{
     io.emit('username',username);
   });
-  socket.on('disconnect', ()=>{
-    io.emit('disconnect',)
+  socket.on('disconnect', (user)=>{
+    io.emit('user disconnected',user)
   });
 });
 
