@@ -18,14 +18,14 @@
 #output{
   background-color: gainsboro;
   color: rgb(46, 46, 46);
-  width: 50%;
-  height: 80%;
+  width: 70%;
+  height: 100%;
   position: relative;
-  left: 25%;
   overflow-y: auto;
   border: 1px solid black;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 5px;
+  float: left;
 }
 
 
@@ -33,9 +33,9 @@
   background-color: gainsboro;
   color:rgb(46, 46, 46);
   box-sizing: border-box;
-  width: 50%;
+  width: 70%;
   position: relative;
-  left: 25%;
+  left: 15%;
   margin-top: 5px;
 }
 
@@ -64,8 +64,13 @@ pre{
 
 #welcomeMessage{
   color:rgb(46, 46, 46);
-  text-align: center;
+  left: 15%;
+  position: relative;
+  width: 70%;
+  height: 5%;
   font-weight: bold;
+  padding: 5px;
+  text-align: center;
 }
 
 
@@ -75,6 +80,26 @@ pre{
   background-color: gainsboro;
   color: rgb(46, 46, 46);
   position: relative;
-  left:25%;
+  left:15%;
 
+}
+
+#onlineUsersBox {
+  background-color: gainsboro;
+  color: rgb(46, 46, 46);
+  width: 30%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid black;
+  border-left: 0px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+#outputOnlineBox {
+  width: 70%;
+  height: 60%;
+  position: relative;
+  left: 15%;
 }
