@@ -29,6 +29,7 @@ io.on('connection', (socket) =>{
   });
   socket.on('disconnect', (user)=>{
     io.emit('user disconnected',user)
+    //I wanna say onlineUsers.splice(indexOf(user), 1); but user is undefined for some random reason
   });
 });
 

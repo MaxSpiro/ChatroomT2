@@ -55,9 +55,9 @@ let input = document.getElementById("input").addEventListener("keyup", function(
 
 
 function updateOnlineUsers(onlineUsers){
+  var ul = document.getElementById("onlineUsers");
+  ul.innerHTML = "";
   for(let i=0;i<onlineUsers.length;i++){
-    var ul = document.getElementById("onlineUsers");
-    ul.innerHTML = "";
     var li = document.createElement("li");
     li.appendChild(document.createTextNode(""+onlineUsers[i]));
     ul.appendChild(li);
