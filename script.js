@@ -133,13 +133,13 @@ function changeColor(){
 function changeTheme() {
   if( theme == "light") {
 
-    styleDoc.href = "styleDARK.css"
+    styleDoc.href = "CSS/styleDARK.css"
 
     theme = "dark";
   }
   else if(theme == "dark") {
 
-    styleDoc.href = "styleLIGHT.css";
+    styleDoc.href = "CSS/styleLIGHT.css";
 
     theme = "light";
   }
