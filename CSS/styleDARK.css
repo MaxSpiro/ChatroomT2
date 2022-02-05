@@ -52,13 +52,22 @@ pre{
 
 #welcomeMessage{
   color:gainsboro;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#welcomeMessageBox {
+  background-color: rgb(46, 46, 46);
   left: 15%;
   position: relative;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-bottom: 0px solid black;
   width: 70%;
-  height: 5%;
-  font-weight: bold;
+  height: auto;
   padding: 5px;
-  text-align: center;
 }
 
 
