@@ -1,0 +1,49 @@
+#titleLogin{
+  color:rgb(46, 46, 46);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#titleLoginBox {
+  background-color: gainsboro;
+  left: 15%;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: 70%;
+  height: auto;
+  padding: 5px;
+}
+
+
+#loginBox {
+  width: 70%;
+  height: 50%;
+  position: relative;
+  left: 15%;
+}
+
+
+
+#inputusername {
+  display: block;
+  width: 30%;
+  height: auto;
+
+}
+
+#inputPassword {
+  display: block;
+  width: 30%;
+
+  height: auto;
+}
+
+
+#buttonLogin {
+  displaay: block;
+  width: 30%;
+  height: auto;
+}
