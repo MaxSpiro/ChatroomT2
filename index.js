@@ -27,8 +27,12 @@ io.on('connection', (socket) =>{
   socket.on('username', (username)=>{
     io.emit('username',username);
   });
-  socket.on('disconnect', (user)=>{
-    io.emit('user disconnected',user)
+  socket.on('disconnect', ()=>{
+    const index = onlineUsers.indexOf(user);
+if (index > -1) {
+  onlineUsers.splice(index, 1); // 2nd parameter means remove one item only
+}
+    io.emit('user disconnected',onlineUsers)
     //I wanna say onlineUsers.splice(indexOf(user), 1); but user is undefined for some random reason
     //https://github.com/bradtraversy/chatcord/blob/master/server.js
   });

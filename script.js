@@ -5,10 +5,11 @@ let currentColor = "blue";
 let username = prompt("Enter username");
 socket.emit('user connected',username);
 socket.on('user connected', (onlineUsers)=>{
-  output.innerHTML += "<pre><span style=color:red>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
+  output.innerHTML += "<pre><span style=color:green>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
   updateOnlineUsers(onlineUsers);
 });
-socket.on('user disconnected',(user)=>{//not working idk why
+socket.on('user disconnected',(onlineUsers)=>{//not working idk why
+  updateOnlineUsers(onlineUsers);
   output.innerHTML += "<pre><span style=color:red>a user has disconnected</span></pre>";
 });
 
