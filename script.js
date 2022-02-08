@@ -1,3 +1,11 @@
+//username and password page info:
+//Username and password entered into 2 dimensional array on website startup and saved in server data
+//Login and sign up are same page BECAUSE if username and password attempted and account exists, it will say invalid Password
+//and if its a new account, we'll put a message saying new account created
+
+
+
+
 var socket = io();
 
 let currentColor = "blue";
@@ -17,6 +25,7 @@ socket.on('user disconnected',(onlineUsers)=>{//not working idk why
 
 let styleDoc = document.getElementById("styleLink");
 
+document.getElementById("welcomeMessage").innterHTML = "";
 document.getElementById("welcomeMessage").innerHTML = "Welcome, " +"<span id=blue>"+username+"</span>";
 
 let output = document.getElementById("output");
@@ -39,31 +48,23 @@ let input = document.getElementById("input").addEventListener("keyup", function(
           //autoscroll vvv
 
     }}})
-/*document.addEventListener("keyup", enterKey);
-  function enterKey(event){
-      if(event.key == 'Enter'){
-        let input = document.getElementById("input").value;
-        input = input.trim();
-        if(input != ""){
-          output.innerHTML += "<pre><span id=blue>"+username+": </span>" + input + "</pre>";
-          document.getElementById("input").value = "";
-          changeColor();
-          //autoscroll vvv
-          output.scrollTop = output.scrollHeight;
-    }
-  }
-}*/
 
 
 function updateOnlineUsers(onlineUsers){
-  var ul = document.getElementById("onlineUsers");
-  ul.innerHTML = "";
+  var nameOutput = document.getElementById("onlineUsersBox");
+  nameOutput.innerHTML = "";
   for(let i=0;i<onlineUsers.length;i++){
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode(""+onlineUsers[i]));
-    ul.appendChild(li);
+    if(currentColor == "blue"){
+      nameOutput.innerHTML += "<pre><span id=blue>"+onlineUsers[i] + "</span></pre>";
+    }else if(currentColor == "green"){
+      nameOutput.innerHTML += "<pre><span id=green>"+onlineUsers[i]+"</span></pre>";
+    }else{
+      nameOutput.innerHTML += "<pre><span id=red>"+onlineUsers[i]+": </span></pre>";
+    }
   }
+  output.scrollTop = output.scrollHeight;
 }
+
 
 var message = "";
 

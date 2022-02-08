@@ -96,9 +96,50 @@ pre{
   padding: 5px;
 }
 
+#onlineUsers {
+
+  list-style-type: none;
+  list-style: none;
+}
+
 #outputOnlineBox {
   width: 70%;
-  height: 60%;
+  height: 50%;
   position: relative;
   left: 15%;
+}
+
+#outputTitleBox {
+  width: 70%;
+  height: auto;
+  position: relative;
+  left: 15%;
+}
+
+#outputTitle {
+  background-color: gainsboro;
+  color: rgb(46, 46, 46);
+  width: 70%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid black;
+  border-bottom: 0px solid black;
+  box-sizing: border-box;
+  padding: 5px;
+  float: left;
+}
+
+#onlineUsersTitle {
+  background-color: gainsboro;
+  color: rgb(46, 46, 46);
+  width: 30%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid black;
+  border-left: 0px solid black;
+  border-bottom: 0px solid black;
+  box-sizing: border-box;
+  padding: 5px;
 }
