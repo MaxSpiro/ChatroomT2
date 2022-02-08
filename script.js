@@ -15,10 +15,13 @@ socket.emit('user connected',username);
 socket.on('user connected', (onlineUsers)=>{
   output.innerHTML += "<pre><span style=color:green>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
   updateOnlineUsers(onlineUsers);
+  output.scrollTop = output.scrollHeight;
+
 });
 socket.on('user disconnected',(onlineUsers)=>{//not working idk why
   updateOnlineUsers(onlineUsers);
   output.innerHTML += "<pre><span style=color:red>a user has disconnected</span></pre>";
+  output.scrollTop = output.scrollHeight;
 });
 
 
@@ -62,7 +65,6 @@ function updateOnlineUsers(onlineUsers){
       nameOutput.innerHTML += "<pre><span id=red>"+onlineUsers[i]+": </span></pre>";
     }
   }
-  output.scrollTop = output.scrollHeight;
 }
 
 
