@@ -24,9 +24,12 @@
   color:rgb(46, 46, 46);
   box-sizing: border-box;
   width: 70%;
+  height: 10%;
   position: relative;
   left: 15%;
-  margin-top: 5px;
+  border: 1px solid black;
+  border-top: 0px solid black;
+
 }
 
 #nameColor{
@@ -78,8 +81,9 @@ pre{
 
   background-color: gainsboro;
   color: rgb(46, 46, 46);
-  position: relative;
-  left:15%;
+  margin: 10px;
+
+
 
 }
 
@@ -96,12 +100,6 @@ pre{
   padding: 5px;
 }
 
-#onlineUsers {
-
-  list-style-type: none;
-  list-style: none;
-}
-
 #outputOnlineBox {
   width: 70%;
   height: 50%;
@@ -111,7 +109,7 @@ pre{
 
 #outputTitleBox {
   width: 70%;
-  height: auto;
+  height: 15%;
   position: relative;
   left: 15%;
 }
@@ -142,4 +140,18 @@ pre{
   border-bottom: 0px solid black;
   box-sizing: border-box;
   padding: 5px;
+}
+
+#buttonBox {
+  background-color: gainsboro;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-top: 0px solid black;
+  left: 15%;
+  width: 70%;
+  position: relative;
+  height: 10%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
