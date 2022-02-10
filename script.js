@@ -91,9 +91,14 @@ socket.on('username',(user)=>{
 
 function printMessage(user, messageInfo){
   if(messageInfo.isImage){
-
+    try{
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
-
+      console.log("worked");
+    } catch(error){
+      console.log("caught an error"+error); // this never gets printed, even if
+      //the image doesn't exist; so a failed image just gives 404 not found error
+      // but doesn't actually throw any sort of error
+    }
   } else{
 
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span>" + messageInfo.message + "</pre>";
