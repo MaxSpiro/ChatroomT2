@@ -91,22 +91,14 @@ socket.on('username',(user)=>{
 
 function printMessage(user, messageInfo){
   if(messageInfo.isImage){
-    if(currentColor == "blue"){
-      output.innerHTML += "<pre><span id='blue'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
-    }else if(currentColor == "green"){
-      output.innerHTML += "<pre><span id='green'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
-    }else{
-      output.innerHTML += "<pre><span id='red'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
-    }
+
+      output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
+
   } else{
-    if(currentColor == "blue"){
-      output.innerHTML += "<pre><span id='blue'>"+user+": </span>" + messageInfo.message + "</pre>";
-    }else if(currentColor == "green"){
-      output.innerHTML += "<pre><span id='green'>"+user+": </span>" + messageInfo.message + "</pre>";
-    }else{
-      output.innerHTML += "<pre><span id='red'>"+user+": </span>" + messageInfo.message + "</pre>";
+
+      output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span>" + messageInfo.message + "</pre>";
     }
-  }
+
   output.scrollTop = output.scrollHeight;
 }
 
