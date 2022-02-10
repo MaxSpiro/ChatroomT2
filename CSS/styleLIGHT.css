@@ -1,7 +1,7 @@
 
 #body {
   height: 100vh;
-  background-color: white;
+  background-image: url("https://st4.depositphotos.com/11351024/21169/i/1600/depositphotos_211695530-stock-photo-white-circuit-board-seamless-pattern.jpg");
 }
 
 
@@ -13,6 +13,9 @@
   position: relative;
   overflow-y: auto;
   border: 1px solid black;
+  border-top: 1px solid rgb(150, 150, 150);
+  border-right: 1px solid rgb(150, 150, 150);
+  border-bottom: 1px solid rgb(150, 150, 150);
   box-sizing: border-box;
   padding: 5px;
   float: left;
@@ -29,6 +32,7 @@
   left: 15%;
   border: 1px solid black;
   border-top: 0px solid black;
+  border-bottom: 1px solid rgb(150, 150, 150);
 
 }
 
@@ -69,7 +73,7 @@ pre{
   position: relative;
   box-sizing: border-box;
   border: 1px solid black;
-  border-bottom: 0px solid black;
+  border-bottom: 0px solid black ;
   width: 70%;
   height: auto;
   padding: 5px;
@@ -96,6 +100,8 @@ pre{
   overflow-y: auto;
   border: 1px solid black;
   border-left: 0px solid black;
+  border-top: 1px solid rgb(150, 150, 150);
+  border-bottom: 1px solid rgb(150, 150, 150);
   box-sizing: border-box;
   padding: 5px;
 }
@@ -123,6 +129,8 @@ pre{
   overflow-y: auto;
   border: 1px solid black;
   border-bottom: 0px solid black;
+  border-top: 1px solid rgb(150, 150, 150);
+  border-right: 1px solid rgb(150, 150, 150);
   box-sizing: border-box;
   padding: 5px;
   float: left;
@@ -138,6 +146,8 @@ pre{
   border: 1px solid black;
   border-left: 0px solid black;
   border-bottom: 0px solid black;
+  border-top: 1px solid rgb(150, 150, 150);
+  border-top: 1px solid rgb(150, 150, 150);
   box-sizing: border-box;
   padding: 5px;
 }
@@ -150,7 +160,7 @@ pre{
   left: 15%;
   width: 70%;
   position: relative;
-  height: 10%;
+  height: 8%;
   display: flex;
   align-content: center;
   justify-content: center;

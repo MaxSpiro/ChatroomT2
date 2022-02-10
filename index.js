@@ -29,14 +29,23 @@ io.on('connection', (socket) =>{
   });
   socket.on('disconnect', ()=>{
     const index = onlineUsers.indexOf(user);
-if (index > -1) {
-  onlineUsers.splice(index, 1); // 2nd parameter means remove one item only
-}
-    io.emit('user disconnected',onlineUsers)
+    if (index > -1) {
+      onlineUsers.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    var disconnectInfo = new ExportInfo(onlineUsers, user);
+
+    io.emit('user disconnected',disconnectInfo);
     //I wanna say onlineUsers.splice(indexOf(user), 1); but user is undefined for some random reason
     //https://github.com/bradtraversy/chatcord/blob/master/server.js
   });
 });
+
+
+function ExportInfo( onlineUsers, user) {
+  this.onlineUsers = onlineUsers;
+  this.user = user;
+
+}
 
 
 //Use the server.listen(3000) when testing locally
@@ -51,4 +60,4 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
-server.listen(port);
+// server.listen(port);

@@ -18,9 +18,9 @@ socket.on('user connected', (onlineUsers)=>{
   output.scrollTop = output.scrollHeight;
 
 });
-socket.on('user disconnected',(onlineUsers)=>{//not working idk why
-  updateOnlineUsers(onlineUsers);
-  output.innerHTML += "<pre><span style=color:red>a user has disconnected</span></pre>";
+socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
+  updateOnlineUsers(disconnectInfo.onlineUsers);
+  output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>";
   output.scrollTop = output.scrollHeight;
 });
 
@@ -29,7 +29,7 @@ socket.on('user disconnected',(onlineUsers)=>{//not working idk why
 let styleDoc = document.getElementById("styleLink");
 
 document.getElementById("welcomeMessage").innterHTML = "";
-document.getElementById("welcomeMessage").innerHTML = "Welcome, " +"<span id=blue>"+username+"</span>";
+document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span id='blue'>"+username+"</span>";
 
 let output = document.getElementById("output");
 
@@ -84,11 +84,11 @@ socket.on('username',(user)=>{
 
 function printMessage(user, message){
   if(currentColor == "blue"){
-    output.innerHTML += "<pre><span id=blue>"+user+": </span>" + message + "</pre>";
+    output.innerHTML += "<pre><span id='blue'>"+user+": </span>" + message + "</pre>";
   }else if(currentColor == "green"){
-    output.innerHTML += "<pre><span id=green>"+user+": </span>" + message + "</pre>";
+    output.innerHTML += "<pre><span id='green'>"+user+": </span>" + message + "</pre>";
   }else{
-    output.innerHTML += "<pre><span id=red>"+user+": </span>" + message + "</pre>";
+    output.innerHTML += "<pre><span id='red'>"+user+": </span>" + message + "</pre>";
   }
 
   output.scrollTop = output.scrollHeight;
