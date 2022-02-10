@@ -35,16 +35,21 @@ let output = document.getElementById("output");
 
 let theme = "light"; //light, dark
 
-//enter text into box w/enter key
+function MessageInfo(message, isImage){
+  this.message = message;
+  this.isImage = isImage;
+}
 
+//enter text into box w/enter key
+var inputBox = document.getElementById("input");
 let input = document.getElementById("input").addEventListener("keyup", function(event) {
   event.preventDefault();
   if( event.keyCode == 13) {
     let input = document.getElementById("input").value;
         input = input.trim();
         if(input != ""){
-
-          sendToServer(input); //sending in the input to the server before resetting the value
+          let serverInput = new MessageInfo(input,imageMode);
+          sendToServer(serverInput); //sending in the input to the server before resetting the value
 
           document.getElementById("input").value = "";
 
@@ -70,27 +75,38 @@ function updateOnlineUsers(onlineUsers){
 
 var message = "";
 
-function sendToServer(message){
-  socket.emit('new message',message);
+function sendToServer(serverInput){
+  socket.emit('new message',serverInput);
   socket.emit('username',username);
 }
-socket.on('new message', (msg)=>{
-  message = msg;
+
+
+socket.on('new message', (messageInfo)=>{
+  this.messageInfo = messageInfo;
 
 });
 socket.on('username',(user)=>{
-  printMessage(user, message);
+  printMessage(user, this.messageInfo);
 })
 
-function printMessage(user, message){
-  if(currentColor == "blue"){
-    output.innerHTML += "<pre><span id='blue'>"+user+": </span>" + message + "</pre>";
-  }else if(currentColor == "green"){
-    output.innerHTML += "<pre><span id='green'>"+user+": </span>" + message + "</pre>";
-  }else{
-    output.innerHTML += "<pre><span id='red'>"+user+": </span>" + message + "</pre>";
+function printMessage(user, messageInfo){
+  if(messageInfo.isImage){
+    if(currentColor == "blue"){
+      output.innerHTML += "<pre><span id='blue'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
+    }else if(currentColor == "green"){
+      output.innerHTML += "<pre><span id='green'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
+    }else{
+      output.innerHTML += "<pre><span id='red'>"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
+    }
+  } else{
+    if(currentColor == "blue"){
+      output.innerHTML += "<pre><span id='blue'>"+user+": </span>" + messageInfo.message + "</pre>";
+    }else if(currentColor == "green"){
+      output.innerHTML += "<pre><span id='green'>"+user+": </span>" + messageInfo.message + "</pre>";
+    }else{
+      output.innerHTML += "<pre><span id='red'>"+user+": </span>" + messageInfo.message + "</pre>";
+    }
   }
-
   output.scrollTop = output.scrollHeight;
 }
 
@@ -98,9 +114,12 @@ function printMessage(user, message){
 
 
 
-
-
-
+var imageMode = false;
+function toggleImage(){
+  imageMode=!imageMode;
+  if(imageMode) inputBox.placeholder = "Enter an image link";
+  else inputBox.placeholder = "Enter a message";
+}
 
 
 function colorOfName(){

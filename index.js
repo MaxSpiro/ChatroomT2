@@ -21,8 +21,8 @@ io.on('connection', (socket) =>{
     io.emit('user connected',onlineUsers);
   });
 
-  socket.on('new message', (message)=>{
-    io.emit('new message',message);
+  socket.on('new message', (messageInfo)=>{
+    io.emit('new message',messageInfo);
   });
   socket.on('username', (username)=>{
     io.emit('username',username);
@@ -51,13 +51,13 @@ function ExportInfo( onlineUsers, user) {
 //Use the server.listen(3000) when testing locally
 
 
-// server.listen(3000, () => {
-//   console.log('listening on *:3000');
-// });
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
 // server.listen(port);
