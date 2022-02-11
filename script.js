@@ -33,7 +33,7 @@ document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span i
 
 let output = document.getElementById("output");
 
-let theme = "light"; //light, dark
+let theme = "dark"; //light, dark
 
 function MessageInfo(message, isImage){
   this.message = message;
@@ -91,14 +91,11 @@ socket.on('username',(user)=>{
 
 function printMessage(user, messageInfo){
   if(messageInfo.isImage){
-    try{
+
+
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
-      console.log("worked");
-    } catch(error){
-      console.log("caught an error"+error); // this never gets printed, even if
-      //the image doesn't exist; so a failed image just gives 404 not found error
-      // but doesn't actually throw any sort of error
-    }
+
+
   } else{
 
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span>" + messageInfo.message + "</pre>";
