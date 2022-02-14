@@ -4,13 +4,11 @@
 //and if its a new account, we'll put a message saying new account created
 
 
-
-
 var socket = io();
 
 let currentColor = "blue";
 
-let username = prompt("Enter username");
+let username = "Guest";
 socket.emit('user connected',username);
 socket.on('user connected', (onlineUsers)=>{
   output.innerHTML += "<pre><span style=color:green>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
@@ -162,6 +160,14 @@ function changeTheme() {
   }
 
 }
+
+function login() {
+  usernameArea = document.getElementById("inputUsername");
+  console.log(usernameArea.value);
+  // username = document.getElementById("inputUsername").value;
+  location.href="../index.html";
+}
+
 
 
 
