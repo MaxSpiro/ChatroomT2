@@ -1,0 +1,63 @@
+#myCanvas {
+  border: 1px solid black;
+  width: 80%;
+  height:60%;
+}
+
+
+.buttons{
+
+  width: 250px;
+    height: 50px;
+    box-sizing: border-box;
+    position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.clr{
+
+   height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 3px solid rgb(214, 214, 214);
+    opacity: 25%;
+}
+
+.clr:hover{
+
+   height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 3px solid rgb(214, 214, 214);
+    opacity: 100%;
+}
+
+.clr:nth-child(1){
+  background-color: black;
+}
+
+.clr:nth-child(2){
+  background-color: red;
+}
+
+.clr:nth-child(3){
+  background-color: blue;
+}
+
+.clr:nth-child(4){
+  background-color: green;
+}
+
+.clr:nth-child(5){
+  background-color: yellow;
+}
+
+.clr:nth-child(6){
+  background-color: white;
+}

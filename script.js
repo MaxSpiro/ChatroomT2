@@ -162,7 +162,7 @@ function changeTheme() {
 }
 
 function login() {
-  usernameArea = document.getElementById("inputUsername");
+  let usernameArea = document.getElementById("inputUsername");
   console.log(usernameArea.value);
   // username = document.getElementById("inputUsername").value;
   location.href="../index.html";

@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width">
     <title>Draw</title>
     <link id="styleLink" href="../CSS/styleLIGHT.css" rel="stylesheet" type="text/css" />
-    <!-- <link id="styleLink" href="../CSS/styleLoginLIGHT.css" rel="stylesheet" type="text/css" /> -->
+    <link id="styleLink" href="../CSS/styleDrawLIGHT.css" rel="stylesheet" type="text/css" />
 
   </head>
   <body id="body">
+    <canvas id="myCanvas"></canvas>
 
-    <canvas id="myCanvas" width="560" height="360"></canvas>
+    <br>
 
-<div class="buttons">
-  <button id="clr" onclick="blackButton()"></button>
-  <button id="clr" onclick="redButton()"></button>
-  <button id="clr" onclick="blueButton()"></button>
-  <button id="clr" onclick="greenButton()"></button>
-  <button id="clr" onclick="yellowButton()"></button>
-  <button id="clr" onclick="eraserButton()"></button>
-<button onclick="clearButton()">Clear</button></div>
-  </div>
-<br>
-<span>Stroke Size:</span>
-<input type="range" min="1" max="10" value="5" id="strokeSlider">
-<span id="slideValue"> </span>
-
+    <div class="buttons">
+      <button class="clr" id="blackBtn" onclick="blackButton()"></button>
+      <button class="clr" id="redBtn" onclick="redButton()"></button>
+      <button class="clr" id="blueBtn" onclick="blueButton()"></button>
+      <button class="clr" id="greenBtn" onclick="greenButton()"></button>
+      <button class="clr" id="yellowBtn" onclick="yellowButton()"></button>
+      <button class="clr" id="whiteBtn" onclick="eraserButton()"></button>
+    <button onclick="clearButton()">Clear</button></div>
+      </div>
+    <br>
+    <span>Stroke Size:</span>
+    <input type="range" min="1" max="20" value="5" id="strokeSlider">
+    <span id="slideValue"> </span>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+    <!-- this doesnt work ^^^ -->
+    <script src="../JS/drawScript.js"></script>
+    <!-- <script src="../script.js"></script> -->
 
 
 
