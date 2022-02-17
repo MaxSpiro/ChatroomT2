@@ -26,7 +26,7 @@ socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
 
 let styleDoc = document.getElementById("styleLink");
 
-document.getElementById("welcomeMessage").innterHTML = "";
+document.getElementById("welcomeMessage").innerHTML = "";
 document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span id='blue'>"+username+"</span>";
 
 let output = document.getElementById("output");
@@ -160,17 +160,3 @@ function changeTheme() {
   }
 
 }
-
-function login() {
-  let usernameArea = document.getElementById("inputUsername");
-  console.log(usernameArea.value);
-  // username = document.getElementById("inputUsername").value;
-  location.href="../index.html";
-}
-
-
-
-
-//For HTML code "<input type="text" autocomplete="off" id = "input"> </input>" we can experiment with <textarea> blocks I saw them online
-
-//Username Input Box "<input type="text" autocomplete="off" id = "usernameInput"> </input>"
