@@ -24,11 +24,18 @@ context.fillRect(0,0,c.width,c.height);
 
 setInterval(periodic, 33);
 function periodic(){
-    context.lineWidth = slider.value;
-    document.getElementById("slideValue").innerHTML = slider.value;
+  
+ document.getElementById("slideValue").innerHTML = slider.value;
+  
+if(currColor == "white")
+  context.lineWidth = slider.value*10;
+else
+  context.lineWidth = slider.value;
+  
+
 
    selectButton();
-
+   
 }
 
 
@@ -60,7 +67,7 @@ if(isDrawing && e.clientY-8<=c.height){
       context.moveTo(previousX, previousY);
       context.lineTo(currX, currY);
       context.stroke();
-
+      
   }
     previousX = e.clientX-8;
     previousY = e.clientY-8;
@@ -78,12 +85,12 @@ function blueButton(){
 function greenButton(){
   context.strokeStyle = 'green';
   currColor = "green";
-
+  
 }
 function blackButton(){
   context.strokeStyle = 'black';
   currColor = "black";
-
+   
 }
 function yellowButton(){
   context.strokeStyle = 'yellow';
