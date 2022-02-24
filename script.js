@@ -3,12 +3,24 @@
 //Login and sign up are same page BECAUSE if username and password attempted and account exists, it will say invalid Password
 //and if its a new account, we'll put a message saying new account created
 
+console.log("test");
 
 var socket = io();
 
+
+if( document.getElementById("outputTitle") != null ) {
+
+
+
 let currentColor = "blue";
 
-let username = "Guest";
+let username;
+
+console.log(username);
+
+if( username == null ) {
+  username = "Guest";
+}
 socket.emit('user connected',username);
 socket.on('user connected', (onlineUsers)=>{
   output.innerHTML += "<pre><span style=color:green>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
@@ -157,6 +169,21 @@ function changeTheme() {
     styleDoc.href = "CSS/styleLIGHT.css";
 
     theme = "light";
+  }
+
+}
+
+}
+
+else if(document.getElementById("titleLoginBox") != null) {
+
+
+  // console.log("test");
+
+  function login() {
+    let username7 = document.getElementById("inputUsername").value;
+    socket.emit('New Login', username7);
+    location.href="../index.html";
   }
 
 }

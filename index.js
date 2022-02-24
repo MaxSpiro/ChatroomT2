@@ -27,6 +27,9 @@ io.on('connection', (socket) =>{
   socket.on('username', (username)=>{
     io.emit('username',username);
   });
+  // io.on('New Login', (username7)=>{
+  //   console.log(username7);
+  // });
   socket.on('disconnect', ()=>{
     const index = onlineUsers.indexOf(user);
     if (index > -1) {
@@ -41,6 +44,8 @@ io.on('connection', (socket) =>{
 });
 
 
+
+
 function ExportInfo( onlineUsers, user) {
   this.onlineUsers = onlineUsers;
   this.user = user;
@@ -48,7 +53,10 @@ function ExportInfo( onlineUsers, user) {
 }
 
 
-//Use the server.listen(3000) when testing locally
+// Use the server.listen(3000) when testing locally
+
+
+
 
 // server.listen(3000, () => {
 //   console.log('listening on *:3000');
