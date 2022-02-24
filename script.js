@@ -89,8 +89,7 @@ socket.on('username',(user)=>{
 
 function printMessage(user, messageInfo){
   if(messageInfo.isImage){
-
-
+      if(messageInfo.message.includes("https://") || messageInfo.message.includes("base64"))
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
 
 
