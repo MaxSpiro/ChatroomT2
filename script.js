@@ -180,9 +180,16 @@ else if(document.getElementById("titleLoginBox") != null) {
   // console.log("test");
 
   function login() {
-    let username7 = document.getElementById("inputUsername").value;
-    socket.emit('New Login', username7);
+    let u1 = document.getElementById("inputUsername").value;
+    let p1 = document.getElementById("inputPassword").value;
+    let userInfo = new UserExportInfo(u1, p1);
+    socket.emit('New Login', userInfo);
     location.href="../index.html";
   }
 
+}
+
+function UserExportInfo( username, password) {
+  this.username = username;
+  this.password = password;
 }

@@ -7,6 +7,8 @@ const io = new Server(server);
 
 let onlineUsers = new Array(0);
 
+let users = new Array(0);
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
@@ -27,9 +29,11 @@ io.on('connection', (socket) =>{
   socket.on('username', (username)=>{
     io.emit('username',username);
   });
-  // io.on('New Login', (username7)=>{
-  //   console.log(username7);
-  // });
+  socket.on('New Login', (userInfo)=>{
+    console.log(userInfo);
+    users[users.length]=userInfo;
+    console.log(users);
+  });
   socket.on('disconnect', ()=>{
     const index = onlineUsers.indexOf(user);
     if (index > -1) {
