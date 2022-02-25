@@ -101,9 +101,28 @@ socket.on('username',(user)=>{
 
 function printMessage(user, messageInfo){
   if(messageInfo.isImage){
-      if(messageInfo.message.includes("https://") || messageInfo.message.includes("base64"))
-      output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width=300 height=300></img>";
+      if(messageInfo.message.includes("https://") || messageInfo.message.includes("base64")){
 
+      var img = new Image();
+      img.src = messageInfo.message;
+      if(img.width>img.height){
+        let ratio = 300/img.width;
+        img.height*=ratio;
+        img.width=300;
+      } else if(img.height>img.width){
+        let ratio = 300/img.height;
+        img.width*=ratio;
+        img.height=300;
+      } else{
+        img.height = 300; img.width = 300;
+      }
+
+
+      output.innerHTML += "<pre id=imageme><span id="+currentColor+">"+user+": </span></pre>";
+
+      document.getElementById("imageme").appendChild(img);
+
+}
 
   } else{
 
