@@ -34,6 +34,11 @@ io.on('connection', (socket) =>{
     users[users.length]=userInfo;
     console.log(users);
   });
+  socket.on('Drawing', (imageURL)=>{
+    io.emit('Drawing', imageURL);
+    console.log(imageURL);
+  });
+ 
   socket.on('disconnect', ()=>{
     const index = onlineUsers.indexOf(user);
     if (index > -1) {
@@ -61,14 +66,13 @@ function ExportInfo( onlineUsers, user) {
 
 
 
+// server.listen(3000, () => {
+//   console.log('listening on *:3000');
+// });
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
-});
 
-
-// let port = process.env.PORT;
-// if (port == null || port == "") {
-//   port = 8000;
-// }
-// server.listen(port);
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+server.listen(port);

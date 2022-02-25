@@ -67,3 +67,11 @@
 .clr:nth-child(6){
   background-color: white;
 }
+
+#postButton{
+
+  position: relative;
+  left: 45%;
+  border-radius: 10%;
+
+}

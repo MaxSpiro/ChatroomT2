@@ -1,3 +1,5 @@
+var socket = io();
+
 let isDrawing = false;
 
 let currX;
@@ -9,7 +11,7 @@ let previousY = null;
 let c = document.getElementById('myCanvas');
 let context = c.getContext('2d');
 
-
+let imageURL; 
 
 let currColor = "black";
 
@@ -49,11 +51,11 @@ window.addEventListener("mouseup", (e)=>{
 })
 
 window.addEventListener("mousemove", (e)=>{
-console.log("clientY: " + e.clientY);
-  console.log("clientX: " + e.clientX);
+// console.log("clientY: " + e.clientY);
+//   console.log("clientX: " + e.clientX);
 
-console.log("Height of Canvas: " + c.height);
-console.log("offSetY: " + e.offsetY);
+// console.log("Height of Canvas: " + c.height);
+// console.log("offSetY: " + e.offsetY);
 if(isDrawing && e.clientY-8<=c.height){
     if(previousX == null){
           previousX = e.clientX-8;
@@ -100,6 +102,7 @@ function yellowButton(){
 function eraserButton(){
   context.strokeStyle = 'white';
   currColor = "white";
+
 
 }
 function clearButton(){
@@ -157,3 +160,13 @@ function selectButton(){
    removeOtherButtons();
 
 }
+
+function postImage(){
+
+  location.href = '../index.html';
+  imageURL = c.toDataURL();
+  socket.emit('Drawing',imageURL);
+
+}
+
+
