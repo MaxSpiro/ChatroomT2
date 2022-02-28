@@ -3,29 +3,39 @@
 //Login and sign up are same page BECAUSE if username and password attempted and account exists, it will say invalid Password
 //and if its a new account, we'll put a message saying new account created
 
-console.log("test");
+// console.log("test");
 
 var socket = io();
 
 
 if( document.getElementById("outputTitle") != null ) {
 
+var username;
 
+var loginQuery = false;
 
 let currentColor = "blue";
 
-let username;
+console.log(localStorage.getItem("Login"));
+if(localStorage.getItem("Login") == "true") {
+  loginQuery = true;
+  localStorage.setItem("Login", "false");
+}
 
-console.log(username);
+
+// console.log(username);
 
 if( username == null ) {
   username = "Guest";
 }
-socket.emit('user connected',username);
-socket.on('user connected', (onlineUsers)=>{
-  output.innerHTML += "<pre><span style=color:green>"+onlineUsers[onlineUsers.length-1]+" has connected</span></pre>";
-  updateOnlineUsers(onlineUsers);
+socket.emit('user connected',loginQuery);
+socket.on('user connected', (connectionInfo)=>{
+  output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>";
+  updateOnlineUsers(connectionInfo.onlineUsers);
   output.scrollTop = output.scrollHeight;
+  username = connectionInfo.user;
+  document.getElementById("welcomeMessage").innerHTML = "";
+  document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span id='blue'>"+username+"</span>";
 
 });
 socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
@@ -38,8 +48,6 @@ socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
 
 let styleDoc = document.getElementById("styleLink");
 
-document.getElementById("welcomeMessage").innerHTML = "";
-document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span id='blue'>"+username+"</span>";
 
 let output = document.getElementById("output");
 
@@ -198,12 +206,32 @@ else if(document.getElementById("titleLoginBox") != null) {
 
   // console.log("test");
 
+  var taken;
+
   function login() {
     let u1 = document.getElementById("inputUsername").value;
     let p1 = document.getElementById("inputPassword").value;
     let userInfo = new UserExportInfo(u1, p1);
     socket.emit('New Login', userInfo);
-    location.href="../index.html";
+    socket.on('New Login', (isTaken)=>{
+        taken = isTaken;
+
+    });
+    if(taken) {
+      document.getElementById("takenOutput").innerHTML = "Incorrect Password";
+    }
+    else {
+      document.getElementById("takenOutput").innerHTML = "New Account Created";
+      var delayInMilliseconds = 2000;
+
+      localStorage.setItem("Login", "true");
+
+      setTimeout(function() {
+        location.href="../index.html";
+      }, delayInMilliseconds);
+
+
+    }
   }
 
 }

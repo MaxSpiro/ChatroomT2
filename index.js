@@ -15,12 +15,19 @@ app.get('/', (req, res) => {
 app.use(express.static('.'));
 
 io.on('connection', (socket) =>{
-  var user = null;
+  var user = "Guest";
 
-  socket.on('user connected', (username)=>{
-    user = username;
+
+  console.log("Entrance");
+
+  socket.on('user connected', (loginQuery)=>{
+    if( loginQuery) {
+      user = users[users.length-1].username;
+    }
     onlineUsers[onlineUsers.length]=user;
-    io.emit('user connected',onlineUsers);
+    // console.log(onlineUsers);
+    var connectionInfo = new ExportInfo(onlineUsers, user);
+    io.emit('user connected',connectionInfo);
   });
 
   socket.on('new message', (messageInfo)=>{
@@ -30,9 +37,20 @@ io.on('connection', (socket) =>{
     io.emit('username',username);
   });
   socket.on('New Login', (userInfo)=>{
-    console.log(userInfo);
-    users[users.length]=userInfo;
+    // console.log(userInfo);
+    var isTaken = true;
+    var textIndex = users.find(({ username }) => username == userInfo.username);
+    if( (typeof textIndex) == "undefined") {
+      isTaken = false;
+    }
+    if(isTaken == false ) {
+      users[users.length]=userInfo;
+      user = userInfo.username;
+      console.log(userInfo.username);
+    }
+    // console.log(isTaken);
     console.log(users);
+    io.emit('New Login', isTaken);
   });
   socket.on('Drawing', (imageURL)=>{
     io.emit('Drawing', imageURL);
