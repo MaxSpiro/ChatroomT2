@@ -105,6 +105,9 @@ function printMessage(user, messageInfo){
 
       var img = new Image();
       img.src = messageInfo.message;
+      console.log(img.width);
+      console.log(img.width);
+
       if(img.width>img.height){
         let ratio = 300/img.width;
         img.height*=ratio;
@@ -121,6 +124,8 @@ function printMessage(user, messageInfo){
       output.innerHTML += "<pre id=imageme><span id="+currentColor+">"+user+": </span></pre>";
 
       document.getElementById("imageme").appendChild(img);
+
+      output.innerHTMl += "<br>";
 
 }
 
@@ -377,7 +382,9 @@ else if(document.getElementById("postButton") != null) {
 
     // location.href = '../index.html';
     imageURL = c.toDataURL();
-    console.log(imageURL);
+    let copyText = imageURL.toString();
+    navigator.clipboard.writeText(copyText);
+    console.log(copyText);
     socket.emit('Drawing',imageURL);
 
   }
