@@ -71,7 +71,8 @@
 #postButton{
 
   position: relative;
-  left: 45%;
+  left: 40%;
   border-radius: 10%;
+  margin: 0px 10px;
 
 }

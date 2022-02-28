@@ -105,9 +105,7 @@ function printMessage(user, messageInfo){
 
       var img = new Image();
       img.src = messageInfo.message;
-      console.log(img.width);
-      console.log(img.width);
-
+      img.onload = function(){
       if(img.width>img.height){
         let ratio = 300/img.width;
         img.height*=ratio;
@@ -120,21 +118,18 @@ function printMessage(user, messageInfo){
         img.height = 300; img.width = 300;
       }
 
-
-      output.innerHTML += "<pre id=imageme><span id="+currentColor+">"+user+": </span></pre>";
-
-      document.getElementById("imageme").appendChild(img);
-
-      output.innerHTMl += "<br>";
-
+      output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width="+img.width+" height="+img.height+"></img>";
+      output.scrollTop = output.scrollHeight;
+}
 }
 
   } else{
 
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span>" + messageInfo.message + "</pre>";
-    }
+      output.scrollTop = output.scrollHeight;
+  }
 
-  output.scrollTop = output.scrollHeight;
+
 }
 
 
