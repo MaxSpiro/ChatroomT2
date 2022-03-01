@@ -27,7 +27,7 @@ io.on('connection', (socket) =>{
     onlineUsers[onlineUsers.length]=user;
     // console.log(onlineUsers);
     var connectionInfo = new ExportInfo(onlineUsers, user);
-    io.emit('user connected',connectionInfo);
+    socket.emit('user connected',connectionInfo);
   });
 
   socket.on('new message', (messageInfo)=>{
@@ -62,7 +62,7 @@ io.on('connection', (socket) =>{
     var userIndex = users.findIndex(({ username }) => username == userInfo.username);
     console.log(userIndex);
     var accInfo = new ExportIsTakenAccCheck(isTaken, accCheck, userIndex);
-    io.emit('New Login', accInfo);
+    socket.emit('New Login', accInfo);
   });
   socket.on('Drawing', (imageURL)=>{
     io.emit('Drawing', imageURL);
