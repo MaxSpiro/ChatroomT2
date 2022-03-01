@@ -206,32 +206,48 @@ else if(document.getElementById("titleLoginBox") != null) {
 
   // console.log("test");
 
-  var taken;
+  var validLogin;
+
 
   function login() {
     let u1 = document.getElementById("inputUsername").value;
     let p1 = document.getElementById("inputPassword").value;
+    console.log(u1);
     let userInfo = new UserExportInfo(u1, p1);
     socket.emit('New Login', userInfo);
-    socket.on('New Login', (isTaken)=>{
-        taken = isTaken;
+    socket.on('New Login', (accInfo)=>{
+
+      if(accInfo.isTaken) {
+        if(accInfo.accCheck == false) {
+          document.getElementById("takenOutput").innerHTML = "Incorrect Password";
+        }
+        else {
+          document.getElementById("takenOutput").innerHTML = "Login Success";
+          var delayInMilliseconds = 250;
+
+          localStorage.setItem("Login", "true");
+
+          setTimeout(function() {
+            location.href="../index.html";
+          }, delayInMilliseconds);
+        }
+      }
+      else {
+        document.getElementById("takenOutput").innerHTML = "New Account Created";
+        var delayInMilliseconds = 250;
+
+        localStorage.setItem("Login", "true");
+
+        setTimeout(function() {
+          location.href="../index.html";
+        }, delayInMilliseconds);
+
+
+      }
+
 
     });
-    if(taken) {
-      document.getElementById("takenOutput").innerHTML = "Incorrect Password";
-    }
-    else {
-      document.getElementById("takenOutput").innerHTML = "New Account Created";
-      var delayInMilliseconds = 2000;
 
-      localStorage.setItem("Login", "true");
-
-      setTimeout(function() {
-        location.href="../index.html";
-      }, delayInMilliseconds);
-
-
-    }
   }
 
 }

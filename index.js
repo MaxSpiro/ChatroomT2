@@ -18,7 +18,7 @@ io.on('connection', (socket) =>{
   var user = "Guest";
 
 
-  console.log("Entrance");
+  // console.log("Entrance");
 
   socket.on('user connected', (loginQuery)=>{
     if( loginQuery) {
@@ -39,18 +39,28 @@ io.on('connection', (socket) =>{
   socket.on('New Login', (userInfo)=>{
     // console.log(userInfo);
     var isTaken = true;
-    var textIndex = users.find(({ username }) => username == userInfo.username);
-    if( (typeof textIndex) == "undefined") {
+    var accCheck = false;
+    var accSearch = users.find(({ username }) => username == userInfo.username);
+    if( (typeof accSearch) == "undefined") {
       isTaken = false;
     }
     if(isTaken == false ) {
       users[users.length]=userInfo;
       user = userInfo.username;
-      console.log(userInfo.username);
+      // console.log(userInfo.username);
     }
-    // console.log(isTaken);
+    // console.log(userInfo);
+    // console.log(accSearch);
+    if( isTaken == true) {
+      if(accSearch.username == userInfo.username && accSearch.password == userInfo.password) {
+        // console.log("!!!!!");
+        accCheck = true;
+      }
+    }
+    console.log(isTaken);
     console.log(users);
-    io.emit('New Login', isTaken);
+    var accInfo = new ExportIsTakenAccCheck(isTaken, accCheck);
+    io.emit('New Login', accInfo);
   });
   socket.on('Drawing', (imageURL)=>{
     io.emit('Drawing', imageURL);
@@ -77,6 +87,11 @@ function ExportInfo( onlineUsers, user) {
   this.onlineUsers = onlineUsers;
   this.user = user;
 
+}
+
+function ExportIsTakenAccCheck( isTaken, accCheck) {
+  this.isTaken = isTaken;
+  this.accCheck = accCheck;
 }
 
 
