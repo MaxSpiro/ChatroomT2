@@ -28,6 +28,7 @@ io.on('connection', (socket) =>{
     // console.log(onlineUsers);
     var connectionInfo = new ExportInfo(onlineUsers, user);
     socket.emit('user connected',connectionInfo);
+    io.emit('user connected (server)', connectionInfo);
   });
 
   socket.on('new message', (messageInfo)=>{

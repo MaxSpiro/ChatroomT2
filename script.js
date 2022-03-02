@@ -40,17 +40,21 @@ if( username == null ) {
 accSessionInfo = new AccSessionInfo(loginQuery, userIndexMain);
 socket.emit('user connected',accSessionInfo);
 socket.on('user connected', (connectionInfo)=>{
-  //output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>";
-  updateOnlineUsers(connectionInfo.onlineUsers);
-  output.scrollTop = output.scrollHeight;
+  
   username = connectionInfo.user;
   document.getElementById("welcomeMessage").innerHTML = "";
   document.getElementById("welcomeMessage").innerHTML = "Welcome,&nbsp;" +"<span id='blue'>"+username+"</span>";
 
 });
+socket.on('user connected (server)', (connectionInfo)=>{
+  output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>"; //andrew doesnt like this
+  updateOnlineUsers(connectionInfo.onlineUsers);
+  output.scrollTop = output.scrollHeight;
+});
+
 socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
   updateOnlineUsers(disconnectInfo.onlineUsers);
-  //output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>";
+  output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>"; //andrew doesnt like this
   output.scrollTop = output.scrollHeight;
 });
 
