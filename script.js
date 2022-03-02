@@ -144,20 +144,8 @@ function printMessage(user, messageInfo){
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width="+img.width+" height="+img.height+"></img>";
       output.scrollTop = output.scrollHeight;
 }
-}else{
-
-    document.getElementById("input").style.border = "1px solid red";
-    document.getElementById("input").style.borderTop = "1px solid red";
-
-    setTimeout(function(){
-      document.getElementById("input").style.border = "1px solid black";
-      document.getElementById("input").style.borderTop = "1px solid black";
-
-    },150);
-
-    
-
 }
+    
 
   } else{
 
