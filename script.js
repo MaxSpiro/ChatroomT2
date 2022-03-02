@@ -16,13 +16,20 @@ var username;
 
 var loginQuery = false;
 
+var userIndexMain = 0;
+
 let currentColor = "blue";
 
 console.log(localStorage.getItem("Login"));
 if(localStorage.getItem("Login") == "true") {
   loginQuery = true;
   localStorage.setItem("Login", "false");
+  userIndexMain = parseInt(localStorage.getItem("UserIndex"));
+
+  // localStorage.getItem("")
 }
+
+console.log(localStorage.getItem("UserIndex"));
 
 
 // console.log(username);
@@ -30,7 +37,8 @@ if(localStorage.getItem("Login") == "true") {
 if( username == null ) {
   username = "Guest";
 }
-socket.emit('user connected',loginQuery);
+accSessionInfo = new AccSessionInfo(loginQuery, userIndexMain);
+socket.emit('user connected',accSessionInfo);
 socket.on('user connected', (connectionInfo)=>{
   //output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>";
   updateOnlineUsers(connectionInfo.onlineUsers);
@@ -228,6 +236,7 @@ else if(document.getElementById("titleLoginBox") != null) {
           var delayInMilliseconds = 250;
 
           localStorage.setItem("Login", "true");
+          localStorage.setItem("UserIndex", accInfo.userIndex);
 
           setTimeout(function() {
             location.href="../index.html";
@@ -239,6 +248,8 @@ else if(document.getElementById("titleLoginBox") != null) {
         var delayInMilliseconds = 250;
 
         localStorage.setItem("Login", "true");
+        localStorage.setItem("UserIndex", accInfo.userIndex);
+
 
         setTimeout(function() {
           location.href="../index.html";
@@ -465,4 +476,9 @@ function scrollUp(){
 function UserExportInfo( username, password) {
   this.username = username;
   this.password = password;
+}
+
+function AccSessionInfo(loginQuery, userIndexMain) {
+  this.loginQuery = loginQuery;
+  this.userIndexMain = userIndexMain;
 }

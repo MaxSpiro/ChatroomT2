@@ -20,14 +20,14 @@ io.on('connection', (socket) =>{
 
   // console.log("Entrance");
 
-  socket.on('user connected', (loginQuery)=>{
-    if( loginQuery) {
-      user = users[users.length-1].username;
+  socket.on('user connected', (accSessionInfo)=>{
+    if( accSessionInfo.loginQuery) {
+      user = users[accSessionInfo.userIndexMain].username;
     }
     onlineUsers[onlineUsers.length]=user;
     // console.log(onlineUsers);
     var connectionInfo = new ExportInfo(onlineUsers, user);
-    io.emit('user connected',connectionInfo);
+    socket.emit('user connected',connectionInfo);
   });
 
   socket.on('new message', (messageInfo)=>{
@@ -59,8 +59,10 @@ io.on('connection', (socket) =>{
     }
     console.log(isTaken);
     console.log(users);
-    var accInfo = new ExportIsTakenAccCheck(isTaken, accCheck);
-    io.emit('New Login', accInfo);
+    var userIndex = users.findIndex(({ username }) => username == userInfo.username);
+    console.log(userIndex);
+    var accInfo = new ExportIsTakenAccCheck(isTaken, accCheck, userIndex);
+    socket.emit('New Login', accInfo);
   });
   socket.on('Drawing', (imageURL)=>{
     io.emit('Drawing', imageURL);
@@ -89,9 +91,10 @@ function ExportInfo( onlineUsers, user) {
 
 }
 
-function ExportIsTakenAccCheck( isTaken, accCheck) {
+function ExportIsTakenAccCheck( isTaken, accCheck, userIndex) {
   this.isTaken = isTaken;
   this.accCheck = accCheck;
+  this.userIndex = userIndex;
 }
 
 
