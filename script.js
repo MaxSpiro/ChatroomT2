@@ -20,6 +20,7 @@ var userIndexMain = 0;
 
 let currentColor = "blue";
 
+
 console.log(localStorage.getItem("Login"));
 if(localStorage.getItem("Login") == "true") {
   loginQuery = true;
@@ -140,7 +141,18 @@ function printMessage(user, messageInfo){
       output.scrollTop = output.scrollHeight;
 }
 }else{
-  alert("Invalid Link");
+
+    document.getElementById("input").style.border = "1px solid red";
+    document.getElementById("input").style.borderTop = "1px solid red";
+
+    setTimeout(function(){
+      document.getElementById("input").style.border = "1px solid black";
+      document.getElementById("input").style.borderTop = "1px solid black";
+
+    },150);
+
+    
+
 }
 
   } else{
@@ -151,7 +163,6 @@ function printMessage(user, messageInfo){
 
 
 }
-
 
 
 
@@ -237,6 +248,8 @@ context.lineCap = 'round';
 
 setInterval(periodic, 33);
 function periodic(){
+
+
 
 //  document.getElementById("slideValue").innerHTML = slider.value;
 if(currColor == "white")
