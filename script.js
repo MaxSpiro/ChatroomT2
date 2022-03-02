@@ -139,6 +139,8 @@ function printMessage(user, messageInfo){
       output.innerHTML += "<pre><span id="+currentColor+">"+user+": </span></pre><img src=" + messageInfo.message+" width="+img.width+" height="+img.height+"></img>";
       output.scrollTop = output.scrollHeight;
 }
+}else{
+  alert("Invalid Link");
 }
 
   } else{
