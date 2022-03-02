@@ -47,14 +47,14 @@ socket.on('user connected', (connectionInfo)=>{
 
 });
 socket.on('user connected (server)', (connectionInfo)=>{
-  output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>"; //andrew doesnt like this
+  // output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>"; //andrew doesnt like this
   updateOnlineUsers(connectionInfo.onlineUsers);
   output.scrollTop = output.scrollHeight;
 });
 
 socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
   updateOnlineUsers(disconnectInfo.onlineUsers);
-  output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>"; //andrew doesnt like this
+  // output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>"; //andrew doesnt like this
   output.scrollTop = output.scrollHeight;
 });
 
@@ -144,7 +144,8 @@ function printMessage(user, messageInfo){
       output.scrollTop = output.scrollHeight;
 }
 }else{
-  alert("Invalid Link");
+  // alert("Invalid Link");
+  console.log("Invalid Link");
 }
 
   } else{
