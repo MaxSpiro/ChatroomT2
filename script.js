@@ -211,7 +211,6 @@ function changeTheme() {
 
 }
 
-let styleThing = getComputedStyle(document.getElementById("myCanvas"));
 
 let isDrawing = false;
 
@@ -234,13 +233,14 @@ var slider = document.getElementById("strokeSlider");
 
 context.fillStyle = "white";
 context.fillRect(0,0,c.width,c.height);
+context.lineCap = 'round';
 
 setInterval(periodic, 33);
 function periodic(){
 
 //  document.getElementById("slideValue").innerHTML = slider.value;
 if(currColor == "white")
-  context.lineWidth = slider.value*10;
+  context.lineWidth = slider.value*3;
 else
   context.lineWidth = slider.value;
 
@@ -457,7 +457,9 @@ else if(document.getElementById("titleLoginBox") != null) {
 function scrollDown(){
 
   document.body.style.overflow = "visible";
-  window.scrollTo(0, document.body.scrollHeight);
+
+  let canvasHeight = document.getElementById("myCanvas").getBoundingClientRect();
+  window.scrollTo(0, canvasHeight.top-8);
   document.body.style.overflow = "hidden";
 
 
