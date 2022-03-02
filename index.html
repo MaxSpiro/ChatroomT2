@@ -12,6 +12,9 @@
 
     <div id = "welcomeMessageBox"> <h1 id = "welcomeMessage">Welcome, </h1> </div>
 
+   
+  
+
     <div id="outputTitleBox">
       <div id="outputTitle">
         <h1>Chatroom</h1>
@@ -42,11 +45,37 @@
 
       <button id="button" onclick="changeTheme()">Change Theme</button>
       <button id="button" onclick="location.href='HTML/login.html';">Login</button>
-      <button id="button" onclick="location.href='HTML/draw.html';">Draw</button>
+      <button id="button" onclick="scrollDown()">Draw</button>
     </div>
 
+    <br>
+    <br>
+    <br>
+
+    <canvas id="myCanvas"></canvas>
 
 
+    <div class="buttons">
+      <button class="clr" id="blackBtn" onclick="blackButton()"></button>
+      <button class="clr" id="redBtn" onclick="redButton()"></button>
+      <button class="clr" id="blueBtn" onclick="blueButton()"></button>
+      <button class="clr" id="greenBtn" onclick="greenButton()"></button>
+      <button class="clr" id="yellowBtn" onclick="yellowButton()"></button>
+      <button class="clr" id="whiteBtn" onclick="eraserButton()"></button>
+      <span></span>
+    <button id="clearButton1" onclick="clearButton()">Clear</button></div>
+      
+    <span id="strokeText">Stroke Size:</span>
+    <input type="range" min="1" max="20" value="5" id="strokeSlider">
+    <!-- <span id="slideValue"> </span> -->
+    <br>
+    <!-- <button id="postButton" onclick="location.href='../index.html'">Back</button> -->
+    <button id="postButton" onclick="scrollUp()">Back</button>
+    <button id="postButton" onclick="postImage()">Post Image</button>
+  
+
+      <br>
+      <br>
 
 
     <script src="/socket.io/socket.io.js"></script>

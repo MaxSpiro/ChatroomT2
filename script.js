@@ -7,6 +7,8 @@
 
 var socket = io();
 
+document.body.style.overflow = "hidden";
+
 
 if( document.getElementById("outputTitle") != null ) {
 
@@ -30,7 +32,7 @@ if( username == null ) {
 }
 socket.emit('user connected',loginQuery);
 socket.on('user connected', (connectionInfo)=>{
-  output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>";
+  //output.innerHTML += "<pre><span style=color:green>"+connectionInfo.onlineUsers[connectionInfo.onlineUsers.length-1]+" has connected</span></pre>";
   updateOnlineUsers(connectionInfo.onlineUsers);
   output.scrollTop = output.scrollHeight;
   username = connectionInfo.user;
@@ -40,7 +42,7 @@ socket.on('user connected', (connectionInfo)=>{
 });
 socket.on('user disconnected',(disconnectInfo)=>{//not working idk why
   updateOnlineUsers(disconnectInfo.onlineUsers);
-  output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>";
+  //output.innerHTML += "<pre><span style=color:red>"+ disconnectInfo.user + " has disconnected</span></pre>";
   output.scrollTop = output.scrollHeight;
 });
 
@@ -252,14 +254,31 @@ else if(document.getElementById("titleLoginBox") != null) {
 
 }
 
-else if(document.getElementById("postButton") != null) {
+function scrollDown(){
+
+  document.body.style.overflow = "visible";
+  window.scrollTo(0, document.body.scrollHeight);
+  document.body.style.overflow = "hidden";
+
+
+}
+
+function scrollUp(){
+
+  document.body.style.overflow = "visible";
+  window.scrollTo(0, 0);
+  document.body.style.overflow = "hidden";
+
+}
+
+// else if(document.getElementById("postButton") != null) {
+  let styleThing = getComputedStyle(document.getElementById("myCanvas"));
+
 
   var socket = io();
 
   let isDrawing = false;
 
-  let currX;
-  let currY;
 
   let previousX = null;
   let previousY = null;
@@ -283,13 +302,11 @@ else if(document.getElementById("postButton") != null) {
   setInterval(periodic, 33);
   function periodic(){
 
-   document.getElementById("slideValue").innerHTML = slider.value;
-
+  //  document.getElementById("slideValue").innerHTML = slider.value;
   if(currColor == "white")
     context.lineWidth = slider.value*10;
   else
     context.lineWidth = slider.value;
-
 
 
      selectButton();
@@ -297,6 +314,9 @@ else if(document.getElementById("postButton") != null) {
   }
 
 
+
+
+  
   window.addEventListener("mousedown", (e)=>{
     isDrawing=true;
   })
@@ -312,24 +332,29 @@ else if(document.getElementById("postButton") != null) {
 
   // console.log("Height of Canvas: " + c.height);
   // console.log("offSetY: " + e.offsetY);
+  // console.log(e.offsetY);
   if(isDrawing && e.clientY-8<=c.height){
-      if(previousX == null){
-            previousX = e.clientX-8;
-            previousY = e.clientY-8;
-        }
+    if(previousX == null){
+          previousX = e.clientX-8;
+          previousY = e.clientY-8;
+      }
 
-         currX = e.clientX-8;
-         currY = e.clientY-8;
+       currX = e.clientX-8;
+       currY = e.clientY-8;
 
-        context.beginPath();
-        context.moveTo(previousX, previousY);
-        context.lineTo(currX, currY);
-        context.stroke();
+      context.beginPath();
+      context.moveTo(previousX, previousY);
+      context.lineTo(currX, currY);
+      context.stroke();
 
-    }
-      previousX = e.clientX-8;
-      previousY = e.clientY-8;
+  }
+    previousX = e.clientX-8;
+    previousY = e.clientY-8;
   })
+
+
+
+  
 
   function redButton(){
     context.strokeStyle = 'red';
@@ -422,15 +447,20 @@ else if(document.getElementById("postButton") != null) {
     // location.href = '../index.html';
     imageURL = c.toDataURL();
     let copyText = imageURL.toString();
-    navigator.clipboard.writeText(copyText);
-    console.log(copyText);
-    socket.emit('Drawing',imageURL);
+
+    scrollUp();
+    let serverInput = new MessageInfo(copyText,true);
+    sendToServer(serverInput);
+    clearButton();
+
+    // console.log(copyText);
+    // socket.emit('Drawing',imageURL);
 
   }
 
 
 
-}
+// }
 
 function UserExportInfo( username, password) {
   this.username = username;
